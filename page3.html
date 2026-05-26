@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Архив — Britpop Chronicles</title>
+  
+  <!-- Автоматическое определение базового пути для GitHub Pages -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      var base = '/';
+      
+      if (path !== '/' && path.split('/').length > 2) {
+        var parts = path.split('/');
+        base = '/' + parts[1] + '/';
+      }
+      
+      var baseElement = document.createElement('base');
+      baseElement.href = base;
+      document.head.appendChild(baseElement);
+    })();
+  </script>
+  
+  <!-- Подключаем шрифт Rubik 80s Fade -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+  
+  <!-- Подключаем шрифт Tilt Warp -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+  
+  <!-- Подключаем шрифт Geist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- Подключаем Font Awesome для иконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Geist", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FFF9F2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* ===== ШАПКА ===== */
+    .header {
+      width: 100%;
+      background-color: #FF383C;
+      padding: 12px 0;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .header__left {
+      flex-shrink: 0;
+      margin-left: 218px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover img {
+      content: url('images/logo1.png');
+    }
+
+    .header__center {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .header__right {
+      flex-shrink: 0;
+      margin-right: 218px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 50px;
+      background-color: #00C0E8;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 8px;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .nav-btn--archive {
+      border-radius: 40px;
+    }
+
+    .nav-btn--profile {
+      border-radius: 8px;
+    }
+
+    .nav-btn:hover {
+      background-color: #000000;
+    }
+
+    /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== ЗАГОЛОВОК "АРХИВ" ===== */
+    .page-title-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 185px;
+    }
+
+    .page-title {
+      font-family: "Tilt Warp", sans-serif;
+      font-size: 160px;
+      font-weight: 400;
+      color: #0F0E0E;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ===== СЕТКА АРХИВА ===== */
+    .archive-grid {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -2px;
+      margin-top: 175px;
+      margin-bottom: 180px;
+    }
+
+    .archive-link {
+      display: block;
+      width: 50%;
+      padding: 2px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .archive-card {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .archive-card-1 { background-image: url('images/1.png'); }
+    .archive-card-2 { background-image: url('images/2.png'); }
+    .archive-card-3 { background-image: url('images/3.png'); }
+    .archive-card-4 { background-image: url('images/4.png'); }
+    .archive-card-5 { background-image: url('images/5.png'); }
+    .archive-card-6 { background-image: url('images/6.png'); }
+    .archive-card-7 { background-image: url('images/7.png'); }
+    .archive-card-8 { background-image: url('images/8.png'); }
+
+    .archive-card__overlay {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      right: 6px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 12px 16px;
+      z-index: 2;
+      backdrop-filter: blur(2px);
+    }
+
+    .archive-card__title {
+      font-family: "Geist", system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .archive-card__meta {
+      font-family: "Geist", system-ui, sans-serif;
+      font-size: 20px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .archive-card__divider { color: #FFFFFF; font-size: 20px; }
+    .archive-card__date { color: #FFFFFF; font-size: 20px; }
+
+    /* ===== БЕСКОНЕЧНАЯ АНИМАЦИЯ VINYL ===== */
+    .vinyl-scroll-wrapper {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+    }
+
+    .vinyl-scroll-track {
+      display: flex;
+      width: max-content;
+      animation: scrollVinyl 20s linear infinite;
+      will-change: transform;
+    }
+
+    .vinyl-scroll-track:hover {
+      animation-play-state: paused;
+    }
+
+    .vinyl-item {
+      flex-shrink: 0;
+      padding: 0 15px;
+    }
+
+    .vinyl-item img {
+      height: auto;
+      width: auto;
+      max-height: 500px;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .vinyl-item img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1) drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+    }
+
+    @keyframes scrollVinyl {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer-wrapper {
+      margin-top: auto;
+      width: 100%;
+      padding-top: 80px;
+    }
+
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 60px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+
+    .bottom-britpop-title {
+      font-family: "Tilt Warp", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 200px;
+      line-height: 85%;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-align: left;
+      flex-shrink: 0;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .bottom-britpop-title:hover {
+      opacity: 0.8;
+    }
+
+    .bottom-britpop-line {
+      display: block;
+    }
+
+    .bottom-brit {
+      color: #00C3D0;
+    }
+
+    .bottom-pop {
+      color: #FF383C;
+    }
+
+    .bottom-chronic {
+      display: block;
+      color: #FF383C;
+    }
+
+    .bottom-les {
+      display: block;
+      color: #FF383C;
+    }
+
+    .columns-wrapper {
+      display: flex;
+      gap: 80px;
+      margin-top: 280px;
+    }
+
+    .bottom-links {
+      text-align: left;
+    }
+
+    .bottom-social {
+      text-align: right;
+      margin-right: 13px;
+    }
+
+    .rounded-badge {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      border: 1px solid #0F0E0E;
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-align: center;
+      background: transparent;
+    }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .links-list a {
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: block;
+    }
+
+    .links-list a:hover {
+      color: #FF383C;
+    }
+
+    .copyright {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: right;
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: -0.02em;
+      color: #777;
+      margin-bottom: 45px;
+    }
+
+    /* ===== АДАПТИВНОСТЬ ===== */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 120px;
+      }
+      .page-title-wrapper {
+        margin-top: 140px;
+      }
+      .archive-grid {
+        margin-top: 120px;
+        margin-bottom: 120px;
+      }
+      .archive-card {
+        height: 500px;
+      }
+      .vinyl-item img {
+        max-height: 380px;
+      }
+      .bottom-britpop-title { font-size: 120px; }
+      .columns-wrapper { margin-top: 180px; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .header__inner { 
+        flex-wrap: wrap; 
+        gap: 12px; 
+        justify-content: center;
+        padding: 0 16px;
+      }
+      .header__left, .header__center, .header__right { 
+        margin: 0 !important;
+      }
+      .nav-btn { width: 80px; height: 40px; font-size: 14px; }
+
+      .page-title {
+        font-size: 80px;
+      }
+      .page-title-wrapper {
+        margin-top: 100px;
+      }
+      
+      .archive-link {
+        width: 50%;
+      }
+      
+      .archive-grid {
+        margin-top: 80px;
+        margin-bottom: 80px;
+        padding: 0 8px;
+      }
+      
+      .archive-card {
+        height: 250px;
+      }
+      
+      .archive-card__overlay {
+        padding: 8px 10px;
+        bottom: 4px;
+        left: 4px;
+        right: 4px;
+      }
+      
+      .archive-card__title {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+      
+      .archive-card__meta {
+        font-size: 12px;
+        gap: 4px;
+      }
+      
+      .archive-card__divider { font-size: 12px; }
+      .archive-card__date { font-size: 12px; }
+
+      .vinyl-item img {
+        max-height: 280px;
+      }
+      
+      .footer-wrapper { padding-top: 60px; }
+      .bottom-section { 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+      .bottom-britpop-title { font-size: 70px; }
+      .columns-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+        width: 100%;
+        margin-top: 0;
+      }
+      .bottom-links, .bottom-social {
+        text-align: left;
+        margin-right: 0;
+        flex: 1;
+      }
+      .bottom-social { text-align: left; }
+      .links-list a { font-size: 18px; }
+      .rounded-badge { font-size: 9px; }
+      .copyright { margin-bottom: 30px; font-size: 14px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 52px;
+      }
+      .page-title-wrapper {
+        margin-top: 70px;
+      }
+      
+      .archive-link {
+        width: 50%;
+      }
+      
+      .archive-grid {
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 0 4px;
+      }
+      
+      .archive-card {
+        height: 180px;
+      }
+      
+      .archive-card__overlay {
+        padding: 6px 8px;
+        bottom: 3px;
+        left: 3px;
+        right: 3px;
+        border-radius: 4px;
+      }
+      
+      .archive-card__title {
+        font-size: 11px;
+        margin-bottom: 2px;
+      }
+      
+      .archive-card__meta {
+        font-size: 10px;
+        gap: 3px;
+      }
+      
+      .archive-card__divider { font-size: 10px; }
+      .archive-card__date { font-size: 10px; }
+
+      .vinyl-item img {
+        max-height: 200px;
+      }
+      
+      .bottom-britpop-title { font-size: 48px; }
+      .columns-wrapper { gap: 20px; }
+      .links-list a { font-size: 14px; }
+      .copyright { font-size: 12px; }
+      .nav-btn { width: 70px; height: 36px; font-size: 12px; }
+    }
+
+    @media (max-width: 360px) {
+      .header__center { gap: 8px; }
+      .nav-btn { width: 60px; height: 32px; font-size: 11px; }
+      .page-title { font-size: 42px; }
+      
+      .archive-link {
+        width: 50%;
+      }
+      
+      .archive-card {
+        height: 140px;
+      }
+      
+      .archive-card__title {
+        font-size: 10px;
+      }
+      
+      .archive-card__meta {
+        font-size: 9px;
+      }
+      
+      .archive-card__divider { font-size: 9px; }
+      .archive-card__date { font-size: 9px; }
+
+      .vinyl-item img {
+        max-height: 160px;
+      }
+      
+      .bottom-britpop-title { font-size: 36px; }
+      .columns-wrapper { flex-direction: column; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ШАПКА ===== -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__left">
+        <a href="index.html" class="logo" title="На главную">
+          <img src="images/logo.png" alt="Логотип">
+        </a>
+      </div>
+      <div class="header__center">
+        <a href="index.html" class="nav-btn">Главная</a>
+        <a href="page3.html" class="nav-btn nav-btn--archive">Архив</a>
+        <a href="page4.html" class="nav-btn">По теме</a>
+      </div>
+      <div class="header__right">
+        <a href="profile.html" class="nav-btn nav-btn--profile">Профиль</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+  <div class="main-content">
+    <div class="container">
+      
+      <!-- ЗАГОЛОВОК "АРХИВ" -->
+      <div class="page-title-wrapper">
+        <h1 class="page-title">АРХИВ</h1>
+      </div>
+
+      <!-- СЕТКА АРХИВА (8 картинок по 2 в ряд) -->
+      <div class="archive-grid">
+        <!-- 1 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-1">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Грэм Коксон в 8 номере японского журнала Snoozer</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Янв 15</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 2 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-2">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Где достать "Definitely Maybe" и (What's the Story) Morning Glory?</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Фев 20</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 3 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-3">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">ЮНИСЕФ "Футбол для жизни"</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Мар 8</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 4 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-4">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Братья Галлахер для журнала NME</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Апр 12</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 5 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-5">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Деймон Албарн в объективе Вольфганга Тильманса</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Май 3</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 6 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-6">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Анаис Галлахер с братьями в кимоно в Токио</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Июн 18</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 7 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-7">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Недавняя фотосессия группы Radiohead</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Июл 22</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- 8 -->
+        <a href="#" class="archive-link">
+          <div class="archive-card archive-card-8">
+            <div class="archive-card__overlay">
+              <div class="archive-card__title">Oasis вернулись, новые истории с концертов</div>
+              <div class="archive-card__meta">
+                <span>Пост</span>
+                <span class="archive-card__divider">•</span>
+                <span class="archive-card__date">Авг 30</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- БЕСКОНЕЧНАЯ АНИМАЦИЯ VINYL ВПРАВО -->
+    <div class="vinyl-scroll-wrapper">
+      <div class="vinyl-scroll-track">
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+        <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <div class="footer-wrapper">
+    <div class="bottom-section">
+      <a href="index.html" class="bottom-britpop-title" title="На главную страницу">
+        <span class="bottom-britpop-line">
+          <span class="bottom-brit">BRIT</span><span class="bottom-pop">POP</span>
+        </span>
+        <span class="bottom-chronic">CHRONIC</span>
+        <span class="bottom-les">LES</span>
+      </a>
+      
+      <div class="columns-wrapper">
+        <div class="bottom-links">
+          <div class="rounded-badge">ссылки</div>
+          <div class="links-list">
+            <a href="index.html">Главная</a>
+            <a href="page3.html">Архив</a>
+            <a href="page4.html">По теме</a>
+          </div>
+        </div>
+        
+        <div class="bottom-social">
+          <div class="rounded-badge">связь</div>
+          <div class="links-list">
+            <a href="https://www.instagram.com/britpop_chronicles?igsh=MTByY2dnMGt5cGw3ag==">Instagram</a>
+            <a href="https://t.me/britpopcch">Telegram</a>
+            <a href="https://www.youtube.com/?app=desktop&hl=ru">YouTube</a>
+            <a href="mailto:britpopchronicles@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      ©2025 Britpop Chronicles
+    </div>
+  </div>
+
+</body>
+</html>

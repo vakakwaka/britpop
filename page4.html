@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>По теме — Britpop Chronicles</title>
+
+  <!-- Автоматическое определение базового пути для GitHub Pages -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      var base = '/';
+      
+      if (path !== '/' && path.split('/').length > 2) {
+        var parts = path.split('/');
+        base = '/' + parts[1] + '/';
+      }
+      
+      var baseElement = document.createElement('base');
+      baseElement.href = base;
+      document.head.appendChild(baseElement);
+    })();
+  </script>
+
+  <!-- ШРИФТЫ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Geist", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FFF9F2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* ===== ШАПКА ===== */
+    .header {
+      width: 100%;
+      background-color: #FF383C;
+      padding: 12px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .header__left {
+      flex-shrink: 0;
+      margin-left: 218px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover img {
+      content: url('images/logo1.png');
+    }
+
+    .header__center {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .header__right {
+      flex-shrink: 0;
+      margin-right: 218px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 50px;
+      background-color: #00C0E8;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 8px;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .nav-btn--archive {
+      border-radius: 40px;
+    }
+
+    .nav-btn--profile {
+      border-radius: 8px;
+    }
+
+    .nav-btn:hover {
+      background-color: #000000;
+    }
+
+    /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    /* ===== ЗАГОЛОВОК "ПО ТЕМЕ" ===== */
+    .page-title-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 235px;
+    }
+
+    .page-title {
+      font-family: "Tilt Warp", sans-serif;
+      font-size: 115px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .page-title .po {
+      color: #FF383C;
+    }
+
+    .page-title .teme {
+      color: #00C3D0;
+    }
+
+    /* ===== БЕСКОНЕЧНАЯ АНИМАЦИЯ VINYL ===== */
+    .vinyl-scroll-wrapper {
+      width: 100%;
+      margin-top: 90px;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+    }
+
+    .vinyl-scroll-track {
+      display: flex;
+      width: max-content;
+      animation: scrollVinyl 20s linear infinite;
+      will-change: transform;
+    }
+
+    .vinyl-scroll-track:hover {
+      animation-play-state: paused;
+    }
+
+    .vinyl-item {
+      flex-shrink: 0;
+      padding: 0 15px;
+    }
+
+    .vinyl-item img {
+      height: auto;
+      width: auto;
+      max-height: 500px;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .vinyl-item img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1) drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+    }
+
+    @keyframes scrollVinyl {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===== ТЕКСТОВЫЙ БЛОК ===== */
+    .info-block {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-top: 225px;
+    }
+
+    .info-block__inner {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .info-block__title {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #0F0E0E;
+      flex-shrink: 0;
+      width: 200px;
+      line-height: 1.4;
+    }
+
+    .info-block__content {
+      flex: 1;
+      position: relative;
+    }
+
+    .info-block__text {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #0F0E0E;
+      line-height: 1.5;
+      text-align: justify;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .info-block__text p {
+      margin-bottom: 20px;
+    }
+
+    .info-block__text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block__text.collapsed {
+      max-height: 90px;
+    }
+
+    .info-block__text.expanded {
+      max-height: 3000px;
+    }
+
+    .ellipsis-hint {
+      display: inline;
+    }
+
+    .info-block__text.expanded .ellipsis-hint {
+      display: none;
+    }
+
+    .info-block__toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #0F0E0E;
+      background: transparent;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      color: #0F0E0E;
+      flex-shrink: 0;
+    }
+
+    .info-block__toggle:hover {
+      background-color: #FF383C;
+      border-color: #FF383C;
+      color: #FFF;
+    }
+
+    .info-block__toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .info-block__toggle.expanded i {
+      transform: rotate(180deg);
+    }
+
+    /* ===== СЕКЦИЯ С ФОТО LIAM И EMAIL ===== */
+    .contact-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-top: 120px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-section__image {
+      flex-shrink: 0;
+      width: 578px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .contact-section__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .contact-section__image img:hover {
+      transform: scale(1.03);
+      filter: brightness(1.05);
+    }
+
+    .contact-section__text {
+      width: 390px;
+      flex-shrink: 0;
+      margin-left: 40px;
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #0F0E0E;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    .contact-section__text p {
+      margin-bottom: 16px;
+    }
+
+    .contact-section__email {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #FF383C;
+      text-decoration: none;
+      border-bottom: 2px solid #FF383C;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding-bottom: 2px;
+      white-space: nowrap;
+    }
+
+    .contact-section__email:hover {
+      color: #00C0E8;
+      border-bottom-color: #00C0E8;
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer-wrapper {
+      margin-top: auto;
+      width: 100%;
+      padding-top: 80px;
+    }
+
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 60px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+
+    .bottom-britpop-title {
+      font-family: "Tilt Warp", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 200px;
+      line-height: 85%;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-align: left;
+      flex-shrink: 0;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .bottom-britpop-title:hover {
+      opacity: 0.8;
+    }
+
+    .bottom-britpop-line {
+      display: block;
+    }
+
+    .bottom-brit {
+      color: #00C3D0;
+    }
+
+    .bottom-pop {
+      color: #FF383C;
+    }
+
+    .bottom-chronic {
+      display: block;
+      color: #FF383C;
+    }
+
+    .bottom-les {
+      display: block;
+      color: #FF383C;
+    }
+
+    .columns-wrapper {
+      display: flex;
+      gap: 80px;
+      margin-top: 280px;
+    }
+
+    .bottom-links {
+      text-align: left;
+    }
+
+    .bottom-social {
+      text-align: right;
+      margin-right: 13px;
+    }
+
+    .rounded-badge {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      border: 1px solid #0F0E0E;
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-align: center;
+      background: transparent;
+    }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .links-list a {
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: block;
+    }
+
+    .links-list a:hover {
+      color: #FF383C;
+    }
+
+    .copyright {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: right;
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: -0.02em;
+      color: #777;
+      margin-bottom: 45px;
+    }
+
+    /* ===== АДАПТИВНОСТЬ ===== */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 80px;
+      }
+      .page-title-wrapper {
+        margin-top: 160px;
+      }
+      .vinyl-item img {
+        max-height: 380px;
+      }
+      .info-block {
+        margin-top: 140px;
+      }
+      .info-block__inner {
+        gap: 40px;
+      }
+      .info-block__title {
+        width: 160px;
+      }
+      .contact-section {
+        gap: 20px;
+      }
+      .contact-section__image {
+        width: 45%;
+      }
+      .contact-section__text {
+        width: auto;
+        flex: 1;
+        margin-left: 20px;
+        font-size: 16px;
+      }
+      .contact-section__email {
+        font-size: 16px;
+      }
+      .bottom-britpop-title { font-size: 120px; }
+      .columns-wrapper { margin-top: 180px; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .header__inner { 
+        flex-wrap: wrap; 
+        gap: 12px; 
+        justify-content: center;
+        padding: 0 16px;
+      }
+      .header__left, .header__center, .header__right { 
+        margin: 0 !important;
+      }
+      .nav-btn { width: 80px; height: 40px; font-size: 14px; }
+
+      .page-title {
+        font-size: 52px;
+      }
+      .page-title-wrapper {
+        margin-top: 100px;
+      }
+
+      .vinyl-scroll-wrapper {
+        margin-top: 50px;
+      }
+      .vinyl-item img {
+        max-height: 280px;
+      }
+
+      .info-block {
+        margin-top: 80px;
+        padding: 0 30px;
+      }
+      .info-block__inner {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .info-block__title {
+        width: 100%;
+        font-size: 18px;
+      }
+      .info-block__text {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .info-block__text p {
+        margin-bottom: 16px;
+      }
+
+      .contact-section {
+        margin-top: 80px;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+        padding: 0 30px;
+      }
+      .contact-section__image {
+        width: 40%;
+        min-width: 120px;
+      }
+      .contact-section__text {
+        width: auto;
+        flex: 1;
+        margin-left: 16px;
+        font-size: 14px;
+      }
+      .contact-section__text p {
+        margin-bottom: 10px;
+      }
+      .contact-section__email {
+        font-size: 14px;
+        white-space: normal;
+        word-break: break-all;
+      }
+
+      .footer-wrapper { padding-top: 60px; }
+      .bottom-section { 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+      .bottom-britpop-title { font-size: 70px; }
+      .columns-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+        width: 100%;
+        margin-top: 0;
+      }
+      .bottom-links, .bottom-social {
+        text-align: left;
+        margin-right: 0;
+        flex: 1;
+      }
+      .bottom-social { text-align: left; }
+      .links-list a { font-size: 18px; }
+      .rounded-badge { font-size: 9px; }
+      .copyright { margin-bottom: 30px; font-size: 14px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 36px;
+      }
+      .page-title-wrapper {
+        margin-top: 70px;
+      }
+      .vinyl-scroll-wrapper {
+        margin-top: 40px;
+      }
+      .vinyl-item img {
+        max-height: 200px;
+      }
+      .info-block {
+        margin-top: 60px;
+        padding: 0 24px;
+      }
+      .info-block__text {
+        font-size: 15px;
+      }
+      .info-block__text p {
+        margin-bottom: 14px;
+      }
+      .info-block__title {
+        font-size: 16px;
+      }
+      .contact-section {
+        margin-top: 60px;
+        gap: 12px;
+        flex-direction: row;
+        padding: 0 24px;
+      }
+      .contact-section__image {
+        width: 40%;
+        min-width: 100px;
+      }
+      .contact-section__text {
+        font-size: 12px;
+        margin-left: 12px;
+      }
+      .contact-section__email {
+        font-size: 12px;
+      }
+      .bottom-britpop-title { font-size: 48px; }
+      .columns-wrapper { gap: 20px; }
+      .links-list a { font-size: 14px; }
+      .copyright { font-size: 12px; }
+      .nav-btn { width: 70px; height: 36px; font-size: 12px; }
+    }
+
+    @media (max-width: 360px) {
+      .header__center { gap: 8px; }
+      .nav-btn { width: 60px; height: 32px; font-size: 11px; }
+      .page-title { font-size: 28px; }
+      .vinyl-item img {
+        max-height: 160px;
+      }
+      .info-block {
+        padding: 0 20px;
+      }
+      .contact-section {
+        padding: 0 20px;
+      }
+      .contact-section__text {
+        font-size: 11px;
+      }
+      .contact-section__email {
+        font-size: 11px;
+      }
+      .bottom-britpop-title { font-size: 36px; }
+      .columns-wrapper { flex-direction: column; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ШАПКА ===== -->
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="index.html" class="logo" title="На главную">
+        <img src="images/logo.png" alt="Логотип">
+      </a>
+    </div>
+    <div class="header__center">
+      <a href="index.html" class="nav-btn">Главная</a>
+      <a href="page3.html" class="nav-btn nav-btn--archive">Архив</a>
+      <a href="page4.html" class="nav-btn">По теме</a>
+    </div>
+    <div class="header__right">
+      <a href="profile.html" class="nav-btn nav-btn--profile">Профиль</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+<div class="main-content">
+
+  <!-- ЗАГОЛОВОК "ПО ТЕМЕ" -->
+  <div class="page-title-wrapper">
+    <h1 class="page-title">
+      <span class="po">ПО</span> <span class="teme">ТЕМЕ</span>
+    </h1>
+  </div>
+
+  <!-- БЕСКОНЕЧНАЯ АНИМАЦИЯ VINYL ВПРАВО -->
+  <div class="vinyl-scroll-wrapper">
+    <div class="vinyl-scroll-track">
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+      <div class="vinyl-item"><img src="images/vinyl.png" alt="Винил"></div>
+    </div>
+  </div>
+
+  <!-- ТЕКСТОВЫЙ БЛОК -->
+  <div class="info-block">
+    <div class="info-block__inner">
+      <h2 class="info-block__title">Почему это существует</h2>
+      <div class="info-block__content">
+        <div class="info-block__text collapsed" id="infoText">
+          <p>Представьте Британию середины 90-х. Консервативное правительство у власти уже полтора десятилетия, эйфория от свинговых шестидесятых и панковского бунта семидесятых давно выцвела, как старые афиши на кирпичных стенах пабов. Гранж из<span class="ellipsis-hint">…</span> Сиэтла накрыл мир волной фланелевых рубашек и экзистенциальной тоски, но в британских городках и пригородах зрело что-то своё — дерзкое, ироничное, одетое в куртки-бомберы и кроссовки Adidas. Это было время, когда молодёжь вновь захотела услышать собственный голос — не американский, а британский, с акцентом родных улиц, пабов и футбольных трибун. Бритпоп стал не просто музыкальным жанром, а культурным манифестом целого поколения, которое устало от серости и искало свой гимн. Blur и Oasis, две группы-антипода, превратили этот порыв в настоящую битву за звание голоса нации, и их противостояние вышло далеко за пределы чартов, став отражением классовых, региональных и эстетических расколов британского общества.</p>
+          <p>Этот сайт — попытка собрать воедино осколки той эпохи: забытые интервью, пожелтевшие сканы журналов, концертные записи на потрёпанных кассетах и истории, которые никогда не попадали на первые полосы. Мы не просто пересказываем факты — мы пытаемся передать воздух девяностых, тот самый электрический треск перед выходом на сцену, когда всё могло измениться в один момент. Это место для тех, кто помнит, и тех, кто хочет понять, почему спустя тридцать лет бритпоп продолжает звучать так же свежо, как в тот самый первый раз.</p>
+        </div>
+        <button class="info-block__toggle collapsed" id="infoToggle" aria-label="Развернуть текст">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ С ФОТО LIAM И EMAIL -->
+  <div class="contact-section">
+    <div class="contact-section__image">
+      <img src="images/liamg.png" alt="Лиам Галлахер">
+    </div>
+    <div class="contact-section__text">
+      <p>У вас есть запылившаяся VHS, утерянная запись, или фильм, о котором никто не говорит?</p>
+      <p>Отправьте письма, записи и т. д. на <a href="mailto:britpopchronicles@gmail.com" class="contact-section__email">britpopchronicles@gmail.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== ПОДВАЛ ===== -->
+<div class="footer-wrapper">
+  <div class="bottom-section">
+    <a href="index.html" class="bottom-britpop-title" title="На главную страницу">
+      <span class="bottom-britpop-line">
+        <span class="bottom-brit">BRIT</span><span class="bottom-pop">POP</span>
+      </span>
+      <span class="bottom-chronic">CHRONIC</span>
+      <span class="bottom-les">LES</span>
+    </a>
+    
+    <div class="columns-wrapper">
+      <div class="bottom-links">
+        <div class="rounded-badge">ссылки</div>
+        <div class="links-list">
+          <a href="index.html">Главная</a>
+          <a href="page3.html">Архив</a>
+          <a href="page4.html">По теме</a>
+        </div>
+      </div>
+      
+      <div class="bottom-social">
+        <div class="rounded-badge">связь</div>
+        <div class="links-list">
+          <a href="https://www.instagram.com/britpop_chronicles?igsh=MTByY2dnMGt5cGw3ag==">Instagram</a>
+          <a href="https://t.me/britpopcch">Telegram</a>
+          <a href="https://www.youtube.com/?app=desktop&hl=ru">YouTube</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    ©2025 Britpop Chronicles
+  </div>
+</div>
+
+<!-- СКРИПТ ДЛЯ РАСКРЫТИЯ/СКРЫТИЯ ТЕКСТА -->
+<script>
+  const infoToggle = document.getElementById('infoToggle');
+  const infoText = document.getElementById('infoText');
+
+  infoToggle.addEventListener('click', () => {
+    const isCollapsed = infoText.classList.contains('collapsed');
+    
+    if (isCollapsed) {
+      infoText.classList.remove('collapsed');
+      infoText.classList.add('expanded');
+      infoToggle.classList.remove('collapsed');
+      infoToggle.classList.add('expanded');
+    } else {
+      infoText.classList.remove('expanded');
+      infoText.classList.add('collapsed');
+      infoToggle.classList.remove('expanded');
+      infoToggle.classList.add('collapsed');
+    }
+  });
+</script>
+
+</body>
+</html>

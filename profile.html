@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль — Britpop Chronicles</title>
+
+<!-- Автоматическое определение базового пути для GitHub Pages -->
+<script>
+  (function() {
+    var path = window.location.pathname;
+    var base = '/';
+    
+    if (path !== '/' && path.split('/').length > 2) {
+      var parts = path.split('/');
+      base = '/' + parts[1] + '/';
+    }
+    
+    var baseElement = document.createElement('base');
+    baseElement.href = base;
+    document.head.appendChild(baseElement);
+  })();
+</script>
+
+<!-- ШРИФТЫ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Geist", sans-serif;
+  background:#FFF9F2;
+  color:#0F0E0E;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  width:100%;
+  background:#FF383C;
+  padding:12px 0;
+}
+
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+}
+
+.header__left{
+  margin-left:218px;
+}
+
+.header__right{
+  margin-right:218px;
+}
+
+.header__center{
+  display:flex;
+  gap:12px;
+}
+
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:opacity 0.3s ease;
+}
+
+.logo:hover img{
+  content:url('images/logo1.png');
+}
+
+.nav-btn{
+  width:100px;
+  height:50px;
+  border:none;
+  border-radius:8px;
+  background:#00C0E8;
+  color:white;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  transition:.2s;
+}
+
+.nav-btn:hover{
+  background:black;
+}
+
+.nav-btn--archive{
+  border-radius:40px;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+  width:100%;
+  max-width:1200px;
+  padding:0 20px;
+}
+
+/* ================= PROFILE COVER BANNER ================= */
+
+.profile-cover-wrapper{
+  width:100%;
+  max-width:1200px;
+  margin:30px auto 0 auto;
+  padding:0 20px;
+}
+
+.profile-cover{
+  width:100%;
+  height:200px;
+  border-radius:12px;
+  overflow:visible;
+  position:relative;
+}
+
+.profile-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+  display:block;
+  border-radius:12px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-page{
+  margin-top:-100px;
+  margin-bottom:100px;
+  position:relative;
+  z-index:2;
+}
+
+/* HEADER */
+
+.profile-header{
+  display:flex;
+  align-items:flex-start;
+  gap:60px;
+  margin-bottom:130px;
+}
+
+.profile-avatar{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  overflow:hidden;
+  flex-shrink:0;
+  border:6px solid #FFF9F2;
+  box-shadow:0 0 0 4px #00C0E8;
+  background:#FFF9F2;
+  margin-left:40px;
+}
+
+.profile-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:50%;
+}
+
+.profile-main-info{
+  flex:1;
+  padding-top:120px;
+}
+
+.profile-top-line{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+.profile-name{
+  font-family:"Tilt Warp", sans-serif;
+  font-size:74px;
+  line-height:0.9;
+  color:#FF383C;
+}
+
+.message-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  overflow:hidden;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.message-btn img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:opacity 0.3s ease;
+}
+
+.message-btn:hover img{
+  content:url('images/message1.png');
+}
+
+.message-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.follow-btn{
+  border:2px solid transparent;
+  background:#00C0E8;
+  color:white;
+  font-family:"Geist", sans-serif;
+  font-size:15px;
+  padding:10px 22px;
+  border-radius:40px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  outline:none;
+}
+
+.follow-btn:hover{
+  background:black;
+  border-color:black;
+}
+
+.follow-btn:active,
+.follow-btn.active{
+  background:white;
+  color:#00C3D0;
+  border-color:#00C3D0;
+}
+
+.profile-username{
+  font-size:22px;
+  line-height:1.6;
+  color:#00C3D0;
+  margin-bottom:24px;
+}
+
+.profile-bio{
+  font-size:22px;
+  line-height:1.6;
+  max-width:760px;
+  margin-bottom:34px;
+}
+
+.profile-stats{
+  display:flex;
+  gap:50px;
+}
+
+.profile-stat{
+  display:flex;
+  flex-direction:column;
+}
+
+.stat-number{
+  font-size:42px;
+  font-weight:700;
+  color:#00C0E8;
+}
+
+.stat-label{
+  font-size:16px;
+  color:#555;
+}
+
+/* ===== TITLES ===== */
+
+.section-heading{
+  margin-bottom:50px;
+}
+
+.heading-red,
+.heading-blue{
+  font-family:"Tilt Warp", sans-serif;
+  font-size:110px;
+  line-height:0.9;
+  text-transform:uppercase;
+  display:block;
+}
+
+.heading-red{
+  color:#FF383C;
+}
+
+.heading-blue{
+  color:#00C0E8;
+}
+
+/* ===== FAVORITES ===== */
+
+.favorites-section{
+  margin-bottom:100px;
+}
+
+.favorites-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.favorite-card{
+  transition:.3s;
+}
+
+.favorite-card:hover{
+  transform:translateY(-8px);
+}
+
+.favorite-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:18px;
+}
+
+.favorite-title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.favorite-subtitle{
+  font-size:17px;
+  color:#666;
+}
+
+/* ===== ACTIVITY ===== */
+
+.activity-section{
+  margin-bottom:60px;
+}
+
+.activity-feed{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.activity-item{
+  display:flex;
+  gap:40px;
+  padding:30px;
+  border-radius:16px;
+  background:#E8E0D5;
+  border:1px solid #D9D0C5;
+  transition:.3s;
+}
+
+.activity-item:hover{
+  transform:translateX(8px);
+  border-color:#C5BBAF;
+}
+
+.activity-date{
+  font-size:18px;
+  font-weight:700;
+  color:#0F0E0E;
+  min-width:90px;
+}
+
+.activity-title{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:8px;
+  color:#0F0E0E;
+}
+
+.activity-text{
+  font-size:20px;
+  line-height:1.5;
+  color:#0F0E0E;
+}
+
+/* ================= FOOTER ================= */
+
+.footer-wrapper{
+  margin-top:210px;
+  width:100%;
+}
+
+.bottom-section{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:60px;
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+  margin-bottom:28px;
+}
+
+.bottom-britpop-title{
+  font-family:"Tilt Warp", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:200px;
+  line-height:85%;
+  letter-spacing:-0.04em;
+  text-transform:uppercase;
+  text-align:left;
+  flex-shrink:0;
+  text-decoration:none;
+  transition:opacity 0.3s ease;
+}
+
+.bottom-britpop-title:hover{
+  opacity:0.8;
+}
+
+.bottom-britpop-line{
+  display:block;
+}
+
+.bottom-brit{
+  color:#00C3D0;
+}
+
+.bottom-pop{
+  color:#FF383C;
+}
+
+.bottom-chronic{
+  display:block;
+  color:#FF383C;
+}
+
+.bottom-les{
+  display:block;
+  color:#FF383C;
+}
+
+.columns-wrapper{
+  display:flex;
+  gap:80px;
+  margin-top:280px;
+}
+
+.bottom-links{
+  text-align:left;
+}
+
+.bottom-social{
+  text-align:right;
+  margin-right:13px;
+}
+
+.rounded-badge{
+  font-family:"Geist", sans-serif;
+  font-weight:600;
+  font-size:10px;
+  line-height:1.4;
+  color:#0F0E0E;
+  border:1px solid #0F0E0E;
+  border-radius:40px;
+  padding:6px 16px;
+  display:inline-block;
+  margin-bottom:15px;
+  text-align:center;
+  background:transparent;
+}
+
+.links-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.links-list a{
+  font-family:"Geist", sans-serif;
+  font-weight:400;
+  font-size:20px;
+  line-height:1.4;
+  color:#0F0E0E;
+  text-decoration:none;
+  transition:color 0.2s ease;
+  display:block;
+}
+
+.links-list a:hover{
+  color:#FF383C;
+}
+
+.copyright{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+  text-align:right;
+  font-family:"Geist", sans-serif;
+  font-weight:400;
+  font-size:16px;
+  line-height:140%;
+  letter-spacing:-0.02em;
+  color:#777;
+  margin-bottom:45px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1200px){
+  .bottom-section{
+    flex-wrap:wrap;
+  }
+}
+
+@media(max-width:1024px){
+  .bottom-britpop-title{font-size:120px;}
+  .columns-wrapper{margin-top:180px;gap:40px;}
+}
+
+@media(max-width:1000px){
+
+  .favorites-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+
+  .favorite-card img{
+    aspect-ratio:1/1;
+  }
+
+  .favorite-title{
+    font-size:18px;
+  }
+
+  .favorite-subtitle{
+    font-size:14px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .header__inner{
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    padding:0 16px;
+  }
+
+  .header__left,
+  .header__center,
+  .header__right{
+    margin:0 !important;
+  }
+
+  .nav-btn{
+    width:80px;
+    height:40px;
+    font-size:14px;
+  }
+
+  .profile-cover-wrapper{
+    margin-top:20px;
+  }
+
+  .profile-cover{
+    height:150px;
+  }
+
+  .profile-page{
+    margin-top:-60px;
+    margin-bottom:60px;
+  }
+
+  .profile-header{
+    flex-direction:column;
+    gap:30px;
+  }
+
+  .profile-avatar{
+    width:120px;
+    height:120px;
+    border-width:4px;
+    margin-left:0;
+  }
+
+  .profile-main-info{
+    padding-top:0;
+  }
+
+  .profile-name{
+    font-size:46px;
+  }
+
+  .profile-username{
+    font-size:18px;
+  }
+
+  .profile-bio{
+    font-size:18px;
+  }
+
+  .profile-stats{
+    gap:30px;
+  }
+
+  .heading-red,
+  .heading-blue{
+    font-size:60px;
+  }
+
+  .favorites-section{
+    margin-bottom:60px;
+  }
+
+  .activity-section{
+    margin-bottom:40px;
+  }
+
+  .favorites-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .favorite-card img{
+    aspect-ratio:1/1;
+    border-radius:8px;
+    margin-bottom:10px;
+  }
+
+  .favorite-title{
+    font-size:16px;
+  }
+
+  .favorite-subtitle{
+    font-size:13px;
+  }
+
+  .activity-item{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .footer-wrapper{
+    margin-top:100px;
+  }
+
+  .bottom-section{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:30px;
+  }
+
+  .bottom-britpop-title{
+    font-size:70px;
+  }
+
+  .columns-wrapper{
+    flex-direction:row;
+    justify-content:space-between;
+    gap:40px;
+    width:100%;
+    margin-top:0;
+  }
+
+  .bottom-links,
+  .bottom-social{
+    text-align:left;
+    margin-right:0;
+    flex:1;
+  }
+
+  .bottom-social{
+    text-align:left;
+  }
+
+  .links-list a{
+    font-size:18px;
+  }
+
+  .rounded-badge{
+    font-size:9px;
+  }
+
+  .copyright{
+    margin-bottom:30px;
+    font-size:14px;
+    text-align:center;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .header__inner{
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    padding:0 16px;
+  }
+
+  .header__left,
+  .header__center,
+  .header__right{
+    margin:0 !important;
+  }
+
+  .nav-btn{
+    width:70px;
+    height:36px;
+    font-size:12px;
+  }
+
+  .profile-cover-wrapper{
+    margin-top:20px;
+  }
+
+  .profile-cover{
+    height:120px;
+  }
+
+  .profile-cover img{
+    object-position:center 15%;
+  }
+
+  .profile-page{
+    margin-top:-50px;
+    margin-bottom:40px;
+  }
+
+  .profile-avatar{
+    width:100px;
+    height:100px;
+    border-width:3px;
+    margin-left:0;
+  }
+
+  .profile-name{
+    font-size:34px;
+  }
+
+  .profile-username{
+    font-size:16px;
+  }
+
+  .heading-red,
+  .heading-blue{
+    font-size:42px;
+  }
+
+  .favorites-section{
+    margin-bottom:50px;
+  }
+
+  .activity-section{
+    margin-bottom:30px;
+  }
+
+  .favorites-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .favorite-card img{
+    aspect-ratio:1/1;
+    border-radius:8px;
+    margin-bottom:8px;
+  }
+
+  .favorite-title{
+    font-size:14px;
+  }
+
+  .favorite-subtitle{
+    font-size:12px;
+  }
+
+  .profile-stats{
+    gap:20px;
+  }
+
+  .stat-number{
+    font-size:28px;
+  }
+
+  .bottom-britpop-title{
+    font-size:48px;
+  }
+
+  .columns-wrapper{
+    gap:20px;
+  }
+
+  .links-list a{
+    font-size:14px;
+  }
+
+  .copyright{
+    font-size:12px;
+    margin-bottom:30px;
+  }
+
+  .footer-wrapper{
+    margin-top:60px;
+  }
+
+}
+
+@media(max-width:360px){
+
+  .header__center{
+    gap:8px;
+  }
+
+  .nav-btn{
+    width:60px;
+    height:32px;
+    font-size:11px;
+  }
+
+  .bottom-britpop-title{
+    font-size:36px;
+  }
+
+  .columns-wrapper{
+    flex-direction:column;
+    gap:30px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+  <div class="header__inner">
+
+    <div class="header__left">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="">
+      </a>
+    </div>
+
+    <div class="header__center">
+      <a href="index.html" class="nav-btn">Главная</a>
+      <a href="page3.html" class="nav-btn nav-btn--archive">Архив</a>
+      <a href="page4.html" class="nav-btn">По теме</a>
+    </div>
+
+    <div class="header__right">
+      <a href="profile.html" class="nav-btn">Профиль</a>
+    </div>
+
+  </div>
+
+</header>
+
+<!-- PROFILE COVER BANNER -->
+<div class="profile-cover-wrapper">
+  <div class="profile-cover">
+    <img src="images/pulp.png" alt="Pulp">
+  </div>
+</div>
+
+<!-- MAIN -->
+
+<main class="container">
+
+  <section class="profile-page">
+
+    <!-- PROFILE HEADER -->
+
+    <div class="profile-header">
+
+      <div class="profile-avatar">
+        <img src="images/item.png" alt="">
+      </div>
+
+      <div class="profile-main-info">
+
+        <div class="profile-top-line">
+
+          <span class="profile-name">
+            PocketRay
+          </span>
+
+          <button class="message-btn" title="Отправить сообщение">
+            <img src="images/message.png" alt="Сообщение">
+          </button>
+
+          <button class="follow-btn" id="followBtn">
+            Читать
+          </button>
+
+        </div>
+
+        <div class="profile-username">
+          @liamfan-n1
+        </div>
+
+        <div class="profile-bio">
+          коллекционер бритпоп архивов, blur/oasis/radiohead,
+          старые nme scans, live bootlegs и концертные записи 90-х.
+        </div>
+
+        <div class="profile-stats">
+
+          <div class="profile-stat">
+            <span class="stat-number">28</span>
+            <span class="stat-label">статьи</span>
+          </div>
+
+          <div class="profile-stat">
+            <span class="stat-number">412</span>
+            <span class="stat-label">подписчики</span>
+          </div>
+
+          <div class="profile-stat">
+            <span class="stat-number">95</span>
+            <span class="stat-label">подписки</span>
+          </div>
+
+          <div class="profile-stat">
+            <span class="stat-number">67</span>
+            <span class="stat-label">избранное</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAVORITES -->
+
+    <div class="favorites-section">
+
+      <div class="section-heading">
+        <span class="heading-red">любимые</span>
+        <span class="heading-blue">альбомы</span>
+      </div>
+
+      <div class="favorites-grid">
+
+        <div class="favorite-card">
+          <img src="images/bluralbum.png" alt="Blur">
+          <div class="favorite-title">Parklife</div>
+          <div class="favorite-subtitle">Blur • 1994</div>
+        </div>
+
+        <div class="favorite-card">
+          <img src="images/oasisalbum.png" alt="Oasis">
+          <div class="favorite-title">Definitely Maybe</div>
+          <div class="favorite-subtitle">Oasis • 1994</div>
+        </div>
+
+        <div class="favorite-card">
+          <img src="images/radioheadalbum.png" alt="Radiohead">
+          <div class="favorite-title">OK Computer</div>
+          <div class="favorite-subtitle">Radiohead • 1997</div>
+        </div>
+
+        <div class="favorite-card">
+          <img src="images/pulpalbum.png" alt="Pulp">
+          <div class="favorite-title">Different Class</div>
+          <div class="favorite-subtitle">Pulp • 1995</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ACTIVITY -->
+
+    <div class="activity-section">
+
+      <div class="section-heading">
+        <span class="heading-blue">недавняя</span>
+        <span class="heading-red">активность</span>
+      </div>
+
+      <div class="activity-feed">
+
+        <div class="activity-item">
+          <div class="activity-date">
+            24 АВГ
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">
+              Добавлена статья:
+            </div>
+            <div class="activity-text">
+              Совместное выступление Ноэла Галлахера и Джонни Марра
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-date">
+            18 АВГ
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">
+              Новый пост:
+            </div>
+            <div class="activity-text">
+              Дэймон Албарн — фотосессия для NME в 1998 году
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-date">
+            12 АВГ
+          </div>
+          <div class="activity-content">
+            <div class="activity-title">
+              Добавлено в избранное:
+            </div>
+            <div class="activity-text">
+              Blur — Parklife
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<div class="footer-wrapper">
+
+  <div class="bottom-section">
+
+    <a href="index.html" class="bottom-britpop-title" title="На главную страницу">
+      <span class="bottom-britpop-line">
+        <span class="bottom-brit">BRIT</span><span class="bottom-pop">POP</span>
+      </span>
+      <span class="bottom-chronic">CHRONIC</span>
+      <span class="bottom-les">LES</span>
+    </a>
+
+    <div class="columns-wrapper">
+
+      <div class="bottom-links">
+
+        <div class="rounded-badge">
+          ссылки
+        </div>
+
+        <div class="links-list">
+          <a href="index.html">Главная</a>
+          <a href="page3.html">Архив</a>
+          <a href="page4.html">По теме</a>
+        </div>
+
+      </div>
+
+      <div class="bottom-social">
+
+        <div class="rounded-badge">
+          связь
+        </div>
+
+        <div class="links-list">
+          <a href="https://www.instagram.com/britpop_chronicles?igsh=MTByY2dnMGt5cGw3ag==">Instagram</a>
+          <a href="https://t.me/britpopcch">Telegram</a>
+          <a href="https://www.youtube.com/?app=desktop&hl=ru">YouTube</a>
+          <a href="mailto:britpopchronicles@gmail.com">Email</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    ©2025 Britpop Chronicles
+  </div>
+
+</div>
+
+<!-- СКРИПТ ДЛЯ КНОПКИ ЧИТАТЬ -->
+<script>
+  const followBtn = document.getElementById('followBtn');
+
+  followBtn.addEventListener('click', () => {
+    followBtn.classList.toggle('active');
+    
+    if (followBtn.classList.contains('active')) {
+      followBtn.textContent = 'Читаю';
+    } else {
+      followBtn.textContent = 'Читать';
+    }
+  });
+</script>
+
+</body>
+</html>

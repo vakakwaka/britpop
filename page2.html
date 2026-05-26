@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Статья — Britpop Chronicles</title>
+
+  <!-- Автоматическое определение базового пути для GitHub Pages -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      var base = '/';
+      
+      if (path !== '/' && path.split('/').length > 2) {
+        var parts = path.split('/');
+        base = '/' + parts[1] + '/';
+      }
+      
+      var baseElement = document.createElement('base');
+      baseElement.href = base;
+      document.head.appendChild(baseElement);
+    })();
+  </script>
+
+  <!-- ШРИФТЫ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Geist", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FFF9F2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== ШАПКА ===== */
+    .header {
+      width: 100%;
+      background-color: #FF383C;
+      padding: 12px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .header__left {
+      flex-shrink: 0;
+      margin-left: 218px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .logo:hover img {
+      content: url('images/logo1.png');
+    }
+
+    .header__center {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .header__right {
+      flex-shrink: 0;
+      margin-right: 218px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 50px;
+      background-color: #00C0E8;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 8px;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .nav-btn--archive {
+      border-radius: 40px;
+    }
+
+    .nav-btn--profile {
+      border-radius: 8px;
+    }
+
+    .nav-btn:hover {
+      background-color: #000000;
+    }
+
+    /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* ===== АВТОР ===== */
+    .author-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 140px;
+      margin-bottom: 150px;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      text-decoration: none;
+    }
+
+    .author-photo {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .author-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .author-photo:hover img {
+      opacity: 0.7;
+    }
+
+    .author-name {
+      font-family: "Tilt Warp", sans-serif;
+      font-size: 64px;
+      font-weight: 400;
+      color: #0F0E0E;
+      line-height: 1.2;
+      transition: color 0.3s ease;
+    }
+
+    .author:hover .author-name {
+      color: #FF383C;
+    }
+
+    /* ===== ЗАГОЛОВОК СТАТЬИ ===== */
+    .title-section {
+      text-align: center;
+      margin-bottom: 200px;
+    }
+
+    .title-line {
+      font-family: "Tilt Warp", sans-serif;
+      font-size: 110px;
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .title-blur {
+      color: #FF383C;
+    }
+
+    .title-oasis {
+      color: #00C0E8;
+    }
+
+    .title-live {
+      color: #FF383C;
+      display: block;
+      line-height: 0.95;
+      margin-top: 0;
+    }
+
+    /* БОЛЬШАЯ КАРТИНКА */
+    .main-img {
+      width: 100%;
+      max-width: 1180px;
+      height: auto;
+      aspect-ratio: 1180 / 700;
+      border-radius: 8px;
+      margin-bottom: 120px;
+      object-fit: cover;
+    }
+
+    /* ===== ТЕКСТ СТАТЬИ ===== */
+    .article-text {
+      max-width: 1110px;
+      margin-bottom: 80px;
+      width: 100%;
+    }
+
+    .text-row {
+      display: flex;
+      gap: 140px;
+      margin-bottom: 20px;
+    }
+
+    .intro-label {
+      font-family: "Roboto", sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #000000;
+      width: 100px;
+      flex-shrink: 0;
+      margin-left: 70px;
+    }
+
+    .main-text {
+      font-family: "Roboto", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.4;
+      flex: 1;
+      max-width: 940px;
+      text-align: left;
+    }
+
+    .main-text p {
+      margin-bottom: 0;
+    }
+
+    /* Второй параграф с раскрытием */
+    .second-paragraph-wrapper {
+      position: relative;
+    }
+
+    .second-paragraph {
+      font-family: "Roboto", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.4;
+      margin-left: 310px;
+      max-width: 940px;
+      text-align: left;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .second-paragraph.collapsed {
+      max-height: 62px;
+    }
+
+    .second-paragraph.expanded {
+      max-height: 2000px;
+    }
+
+    .ellipsis-hint {
+      display: inline;
+    }
+
+    .second-paragraph.expanded .ellipsis-hint {
+      display: none;
+    }
+
+    .article-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #0F0E0E;
+      background: transparent;
+      cursor: pointer;
+      margin-left: 310px;
+      margin-top: 12px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      color: #0F0E0E;
+      flex-shrink: 0;
+    }
+
+    .article-toggle:hover {
+      background-color: #FF383C;
+      border-color: #FF383C;
+      color: #FFF;
+    }
+
+    .article-toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .article-toggle.expanded i {
+      transform: rotate(180deg);
+    }
+
+    /* ===== СЕРОЕ ПОЛЕ ===== */
+    .gray-section {
+      width: 1200px;
+      height: 730px;
+      background-color: #BEB8B8;
+      border-radius: 16px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .gray-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .more-articles-title {
+      position: absolute;
+      top: 120px;
+      left: 38px;
+      font-family: "Roboto", sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #FFF9F2;
+    }
+
+    .articles-gallery {
+      position: absolute;
+      top: 178px;
+      left: 38px;
+      right: 38px;
+      display: flex;
+      gap: 24px;
+      justify-content: space-between;
+    }
+
+    .article-card {
+      width: 357px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: filter 0.4s ease, transform 0.3s ease;
+    }
+
+    .article-card img:hover {
+      filter: blur(4px);
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+
+    .article-title {
+      font-family: "Geist", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFF9F2;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .article-meta {
+      font-family: "Geist", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #8C8D92;
+      text-align: left;
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer-wrapper {
+      margin-top: 210px;
+      width: 100%;
+    }
+
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 60px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+
+    .bottom-britpop-title {
+      font-family: "Tilt Warp", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 200px;
+      line-height: 85%;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-align: left;
+      flex-shrink: 0;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .bottom-britpop-title:hover {
+      opacity: 0.8;
+    }
+
+    .bottom-britpop-line {
+      display: block;
+    }
+
+    .bottom-brit {
+      color: #00C3D0;
+    }
+
+    .bottom-pop {
+      color: #FF383C;
+    }
+
+    .bottom-chronic {
+      display: block;
+      color: #FF383C;
+    }
+
+    .bottom-les {
+      display: block;
+      color: #FF383C;
+    }
+
+    .columns-wrapper {
+      display: flex;
+      gap: 80px;
+      margin-top: 280px;
+    }
+
+    .bottom-links {
+      text-align: left;
+    }
+
+    .bottom-social {
+      text-align: right;
+      margin-right: 13px;
+    }
+
+    .rounded-badge {
+      font-family: "Geist", sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      border: 1px solid #0F0E0E;
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-align: center;
+      background: transparent;
+    }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .links-list a {
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #0F0E0E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: block;
+    }
+
+    .links-list a:hover {
+      color: #FF383C;
+    }
+
+    .copyright {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: right;
+      font-family: "Geist", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: -0.02em;
+      color: #777;
+      margin-bottom: 45px;
+    }
+
+    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+    @media (max-width: 1220px) {
+      .gray-section { width: 100%; max-width: 1200px; }
+    }
+
+    @media (max-width: 1024px) {
+      .bottom-britpop-title { font-size: 120px; }
+      .columns-wrapper { margin-top: 180px; gap: 40px; }
+      .title-line { font-size: 80px; }
+    }
+
+    @media (max-width: 900px) {
+      .text-row { gap: 40px; }
+      .intro-label { margin-left: 20px; font-size: 28px; }
+      .second-paragraph { margin-left: 140px; }
+      .article-toggle { margin-left: 140px; }
+      .main-text, .second-paragraph { font-size: 20px; }
+      .articles-gallery { gap: 16px; }
+      .article-title { font-size: 16px; }
+      .article-meta { font-size: 14px; }
+    }
+
+    @media (max-width: 768px) {
+      .header__inner { 
+        flex-wrap: wrap; 
+        gap: 12px; 
+        justify-content: center;
+        padding: 0 16px;
+      }
+      .header__left, .header__center, .header__right { 
+        margin: 0 !important;
+      }
+      .nav-btn { width: 80px; height: 40px; font-size: 14px; }
+      
+      .author-section { margin-top: 60px; margin-bottom: 60px; }
+      .author-name { font-size: 32px; }
+      .author-photo { width: 70px; height: 70px; }
+      .author { gap: 20px; }
+      
+      .title-section { margin-bottom: 80px; }
+      .title-line { font-size: 42px; }
+      
+      .main-img { margin-bottom: 60px; }
+      
+      .text-row { flex-direction: column; gap: 16px; }
+      .intro-label { margin-left: 0; font-size: 24px; }
+      .second-paragraph { margin-left: 0; }
+      .article-toggle { margin-left: 0; }
+      .main-text, .second-paragraph { font-size: 18px; }
+      
+      .gray-section { 
+        width: calc(100% - 32px); 
+        max-width: 100%;
+        margin: 0 16px;
+        height: auto;
+        padding-bottom: 40px;
+      }
+      .more-articles-title { 
+        position: relative; 
+        top: 0; 
+        left: 0; 
+        margin-top: 40px;
+        margin-left: 20px;
+        margin-bottom: 28px;
+      }
+      .articles-gallery { 
+        position: relative; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        margin-top: 0;
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+      }
+      .article-card { width: 100%; max-width: 320px; }
+      .article-card img { height: 200px; }
+      .article-title { font-size: 18px; }
+      .article-meta { font-size: 16px; }
+      
+      .footer-wrapper { margin-top: 100px; }
+      .bottom-section { 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+      .bottom-britpop-title { font-size: 70px; }
+      .columns-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+        width: 100%;
+        margin-top: 0;
+      }
+      .bottom-links, .bottom-social {
+        text-align: left;
+        margin-right: 0;
+        flex: 1;
+      }
+      .bottom-social { text-align: left; }
+      .links-list a { font-size: 18px; }
+      .rounded-badge { font-size: 9px; }
+      .copyright { margin-bottom: 30px; font-size: 14px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .author-name { font-size: 28px; }
+      .author-photo { width: 55px; height: 55px; }
+      .author { gap: 15px; }
+      .title-line { font-size: 32px; }
+      .intro-label { font-size: 20px; }
+      .main-text, .second-paragraph { font-size: 16px; }
+      
+      .gray-section { width: calc(100% - 20px); margin: 0 10px; }
+      .more-articles-title { font-size: 20px; margin-left: 15px; }
+      .articles-gallery { padding: 0 15px; }
+      .article-title { font-size: 16px; }
+      .article-meta { font-size: 14px; }
+      
+      .bottom-britpop-title { font-size: 48px; }
+      .columns-wrapper { gap: 20px; }
+      .links-list a { font-size: 14px; }
+      .copyright { font-size: 12px; }
+      .nav-btn { width: 70px; height: 36px; font-size: 12px; }
+      .footer-wrapper { margin-top: 60px; }
+    }
+
+    @media (max-width: 360px) {
+      .header__center { gap: 8px; }
+      .nav-btn { width: 60px; height: 32px; font-size: 11px; }
+      .author-name { font-size: 24px; }
+      .title-line { font-size: 28px; }
+      .bottom-britpop-title { font-size: 36px; }
+      .columns-wrapper { flex-direction: column; gap: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== ШАПКА ===== -->
+<header class="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="index.html" class="logo" title="На главную">
+        <img src="images/logo.png" alt="Логотип">
+      </a>
+    </div>
+    <div class="header__center">
+      <a href="index.html" class="nav-btn">Главная</a>
+      <a href="page3.html" class="nav-btn nav-btn--archive">Архив</a>
+      <a href="page4.html" class="nav-btn">По теме</a>
+    </div>
+    <div class="header__right">
+      <a href="profile.html" class="nav-btn nav-btn--profile">Профиль</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+<div class="main-content">
+  <div class="container">
+
+    <div class="author-section">
+      <a href="profile.html" class="author">
+        <div class="author-photo">
+          <img src="images/item.png" alt="Аватар автора">
+        </div>
+        <span class="author-name">@liamfan-n1</span>
+      </a>
+    </div>
+
+    <div class="title-section">
+      <div class="title-line">
+        <span class="title-blur">Blur.</span>
+        <span class="title-oasis"> Oasis.</span>
+        <span class="title-live">Live 105.</span>
+      </div>
+    </div>
+
+    <img src="images/article.png" alt="Главное изображение" class="main-img">
+
+    <div class="article-text">
+      <div class="text-row">
+        <div class="intro-label">Интро</div>
+        <div class="main-text">
+          <p>В 1994 году на радиостанции Live 105 в Сан-Франциско произошла одна из самых знаменитых и неожиданных встреч в истории бритпопа: группы Blur и Oasis дали совместное интервью. Это случилось 26 сентября, когда оба коллектива находились в городе с концертами.</p>
+        </div>
+      </div>
+      
+      <div class="second-paragraph-wrapper">
+        <p class="second-paragraph collapsed" id="articleSecondParagraph">
+          Промоутеры уговорили музыкантов прийти на интервью, не сообщив, что туда же приглашены их главные соперники. Напряжение в студии можно<span class="ellipsis-hint">…</span> было резать ножом — Лиам Галлахер и Дэймон Албарн обменивались колкими взглядами, пока Ноэль Галлахер что-то наигрывал на акустической гитаре, делая вид, что происходящее его совершенно не волнует. В эфире прозвучали взаимные подколы, едкие комментарии о текстах песен и происхождении участников — южный интеллектуализм Blur против северной пролетарской дерзости Oasis. Эта запись стала легендарной, потому что в ней, как в капле воды, отразилась вся суть бритпопа: не просто музыка, а война мировоззрений, завёрнутая в гитарные риффы и парковые куртки.
+        </p>
+        <button class="article-toggle collapsed" id="articleToggle" aria-label="Развернуть текст">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- СЕРОЕ ПОЛЕ -->
+  <div class="gray-section">
+    <div class="gray-content">
+      <div class="more-articles-title">Больше статей</div>
+      <div class="articles-gallery">
+        <div class="article-card">
+          <img src="images/mg.png" alt="Статья 1">
+          <div class="article-title">Группа Oasis в США. Подарок от Diesel</div>
+          <div class="article-meta">Пост • Авг 12</div>
+        </div>
+        <div class="article-card">
+          <img src="images/mg1.png" alt="Статья 2">
+          <div class="article-title">Документальный фильм Гранта Ги "Meeting People Is Easy"</div>
+          <div class="article-meta">Пост • Сен 13</div>
+        </div>
+        <div class="article-card">
+          <img src="images/mg2.png" alt="Статья 3">
+          <div class="article-title">Дэймон Албарн, фотосессия для журнала NME в 1998 году</div>
+          <div class="article-meta">Пост • Авг 18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПОДВАЛ -->
+  <div class="footer-wrapper">
+    <div class="bottom-section">
+      <a href="index.html" class="bottom-britpop-title" title="На главную страницу">
+        <span class="bottom-britpop-line">
+          <span class="bottom-brit">BRIT</span><span class="bottom-pop">POP</span>
+        </span>
+        <span class="bottom-chronic">CHRONIC</span>
+        <span class="bottom-les">LES</span>
+      </a>
+      
+      <div class="columns-wrapper">
+        <div class="bottom-links">
+          <div class="rounded-badge">ссылки</div>
+          <div class="links-list">
+            <a href="index.html">Главная</a>
+            <a href="page3.html">Архив</a>
+            <a href="page4.html">По теме</a>
+          </div>
+        </div>
+        
+        <div class="bottom-social">
+          <div class="rounded-badge">связь</div>
+          <div class="links-list">
+            <a href="https://www.instagram.com/britpop_chronicles?igsh=MTByY2dnMGt5cGw3ag==">Instagram</a>
+            <a href="https://t.me/britpopcch">Telegram</a>
+            <a href="https://www.youtube.com/?app=desktop&hl=ru">YouTube</a>
+            <a href="mailto:britpopchronicles@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      ©2025 Britpop Chronicles
+    </div>
+  </div>
+</div>
+
+<!-- СКРИПТ ДЛЯ РАСКРЫТИЯ/СКРЫТИЯ ТЕКСТА -->
+<script>
+  const articleToggle = document.getElementById('articleToggle');
+  const articleSecondParagraph = document.getElementById('articleSecondParagraph');
+
+  articleToggle.addEventListener('click', () => {
+    const isCollapsed = articleSecondParagraph.classList.contains('collapsed');
+    
+    if (isCollapsed) {
+      articleSecondParagraph.classList.remove('collapsed');
+      articleSecondParagraph.classList.add('expanded');
+      articleToggle.classList.remove('collapsed');
+      articleToggle.classList.add('expanded');
+    } else {
+      articleSecondParagraph.classList.remove('expanded');
+      articleSecondParagraph.classList.add('collapsed');
+      articleToggle.classList.remove('expanded');
+      articleToggle.classList.add('collapsed');
+    }
+  });
+</script>
+
+</body>
+</html>
